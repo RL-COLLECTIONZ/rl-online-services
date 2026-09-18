@@ -2078,7 +2078,9 @@ async function submitRequest(){
 
         const data = collectRequestData();
 
-        const response = await fetch("https://rl-online-services.onrender.com/api/orders", {
+        console.log("Sending order to Render...");
+
+const response = await fetch("https://rl-online-services.onrender.com/api/orders", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -2117,6 +2119,7 @@ async function submitRequest(){
     } catch (error) {
 
         console.error("Submit request error:", error);
+alert("ERROR: " + error.message);
 
         alert("Unable to submit your request. Please try again.");
     }
