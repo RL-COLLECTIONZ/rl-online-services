@@ -185,7 +185,16 @@ app.get("/", (req, res) => {
 });
 
 // Create Order
-app.post("/api/orders", async (req, res) => {
+app.post("/api/admin/login", async (req, res) => {
+  console.log("ADMIN LOGIN TEST:", {
+    usernameReceived: req.body?.username,
+    usernameExpected: process.env.ADMIN_USERNAME,
+    hasPasswordHash: !!process.env.ADMIN_PASSWORD_HASH,
+    hasJwtSecret: !!process.env.JWT_SECRET
+  });
+
+  try {
+    const { username, password } = req.body;
   try {
     const {
       fullName,
