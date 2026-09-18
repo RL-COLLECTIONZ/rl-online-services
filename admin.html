@@ -876,7 +876,7 @@ async function updateOrderPayment(orderId) {
 
     try {
 
-        const response = await fetch(`/api/orders/${orderId}`, {
+        const response = await fetch(`https://rl-online-services.onrender.com/api/orders/${orderId}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -937,7 +937,7 @@ async function updateOrderStatus(orderId) {
 
     try {
 
-        const response = await fetch(`/api/orders/${orderId}`, {
+        const response = await fetch(`https://rl-online-services.onrender.com/api/orders/${orderId}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
