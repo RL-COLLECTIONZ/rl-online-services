@@ -1,0 +1,2309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>R&L Online Services — Your Digital Services Partner</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Inter,Arial,sans-serif;
+    background:#050b17;
+    color:#fff;
+    overflow-x:hidden;
+}
+
+:root{
+    --blue:#1683ff;
+    --cyan:#00d9ff;
+    --dark:#050b17;
+    --card:#0b1425;
+    --muted:#91a0b8;
+    --border:rgba(255,255,255,.09);
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+button,input,select,textarea{
+    font-family:inherit;
+}
+
+/* BACKGROUND */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-3;
+    background:
+        linear-gradient(rgba(22,131,255,.045) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(22,131,255,.045) 1px,transparent 1px);
+    background-size:45px 45px;
+    mask-image:linear-gradient(to bottom,black,transparent 85%);
+}
+
+.orb{
+    position:fixed;
+    width:300px;
+    height:300px;
+    border-radius:50%;
+    filter:blur(100px);
+    opacity:.13;
+    z-index:-2;
+}
+
+.orb.one{
+    background:#087cff;
+    top:80px;
+    left:-130px;
+}
+
+.orb.two{
+    background:#00d9ff;
+    right:-130px;
+    top:480px;
+}
+
+/* NAV */
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    height:70px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 7%;
+    background:rgba(5,11,23,.75);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--border);
+    z-index:100;
+}
+
+.logo{
+    font-size:20px;
+    font-weight:800;
+    letter-spacing:-.5px;
+}
+
+.logo span{
+    color:var(--cyan);
+}
+
+.nav-links{
+    display:flex;
+    gap:28px;
+    color:#b9c5d8;
+    font-size:14px;
+}
+
+.nav-links a:hover{
+    color:#fff;
+}
+
+.nav-btn{
+    padding:11px 18px;
+    border-radius:12px;
+    background:linear-gradient(135deg,var(--blue),var(--cyan));
+    color:#fff;
+    font-size:13px;
+    font-weight:700;
+}
+
+/* HERO */
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    padding:120px 7% 70px;
+    position:relative;
+}
+
+.hero-content{
+    width:58%;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 13px;
+    border:1px solid rgba(0,217,255,.25);
+    background:rgba(0,217,255,.06);
+    color:#7deeff;
+    border-radius:30px;
+    font-size:12px;
+    margin-bottom:22px;
+}
+
+.badge-dot{
+    width:7px;
+    height:7px;
+    background:#00e0ff;
+    border-radius:50%;
+    box-shadow:0 0 12px #00e0ff;
+}
+
+.hero h1{
+    font-size:clamp(42px,6vw,78px);
+    line-height:1.02;
+    letter-spacing:-3px;
+    max-width:750px;
+}
+
+.gradient-text{
+    background:linear-gradient(90deg,#fff,#71ddff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+    color:var(--muted);
+    max-width:620px;
+    line-height:1.8;
+    margin:25px 0 30px;
+    font-size:16px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:13px;
+    flex-wrap:wrap;
+}
+
+.primary-btn,
+.secondary-btn{
+    border:0;
+    padding:14px 21px;
+    border-radius:13px;
+    cursor:pointer;
+    font-weight:700;
+    font-size:14px;
+}
+
+.primary-btn{
+    background:linear-gradient(135deg,var(--blue),var(--cyan));
+    color:#fff;
+    box-shadow:0 10px 35px rgba(0,150,255,.2);
+}
+
+.secondary-btn{
+    color:#dbe8f7;
+    background:rgba(255,255,255,.045);
+    border:1px solid var(--border);
+}
+
+/* HERO CARD */
+.hero-card{
+    position:absolute;
+    right:7%;
+    width:340px;
+    background:linear-gradient(145deg,rgba(16,30,52,.95),rgba(7,15,28,.95));
+    border:1px solid var(--border);
+    border-radius:24px;
+    padding:22px;
+    box-shadow:0 30px 80px rgba(0,0,0,.35);
+    animation:float 5s ease-in-out infinite;
+}
+
+@keyframes float{
+    0%,100%{transform:translateY(0)}
+    50%{transform:translateY(-12px)}
+}
+
+.card-title{
+    font-size:13px;
+    color:#8ea1bc;
+    margin-bottom:17px;
+}
+
+.flow{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+}
+
+.flow-item{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:13px;
+    border-radius:13px;
+    background:rgba(255,255,255,.035);
+    border:1px solid rgba(255,255,255,.06);
+}
+
+.flow-icon{
+    width:35px;
+    height:35px;
+    display:grid;
+    place-items:center;
+    border-radius:10px;
+    background:rgba(0,217,255,.1);
+    color:#6ceaff;
+}
+
+.flow-item strong{
+    display:block;
+    font-size:12px;
+}
+
+.flow-item small{
+    color:#72819a;
+    font-size:10px;
+}
+
+/* SECTIONS */
+section{
+    padding:90px 7%;
+}
+
+.section-head{
+    margin-bottom:38px;
+}
+
+.eyebrow{
+    color:#5edfff;
+    font-size:12px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+    margin-bottom:10px;
+}
+
+.section-head h2{
+    font-size:clamp(28px,4vw,44px);
+    letter-spacing:-1.5px;
+}
+
+.section-head p{
+    color:var(--muted);
+    margin-top:12px;
+    max-width:600px;
+    line-height:1.7;
+}
+
+/* SERVICES */
+.service-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+}
+
+.service-card{
+    background:linear-gradient(145deg,rgba(15,29,50,.85),rgba(7,14,27,.85));
+    border:1px solid var(--border);
+    border-radius:20px;
+    padding:21px;
+    transition:.3s;
+    cursor:pointer;
+}
+
+.service-card:hover{
+    transform:translateY(-5px);
+    border-color:rgba(0,217,255,.3);
+}
+
+.service-icon{
+    width:45px;
+    height:45px;
+    border-radius:13px;
+    display:grid;
+    place-items:center;
+    background:rgba(22,131,255,.1);
+    color:#62dcff;
+    margin-bottom:18px;
+    font-size:20px;
+}
+
+.service-card h3{
+    font-size:16px;
+    margin-bottom:8px;
+}
+
+.service-card p{
+    color:#8291a8;
+    font-size:12px;
+    line-height:1.6;
+    margin-bottom:17px;
+}
+
+.service-list{
+    display:flex;
+    flex-direction:column;
+    gap:7px;
+}
+
+.service-list button{
+    text-align:left;
+    border:0;
+    background:rgba(255,255,255,.035);
+    color:#cdd8e8;
+    padding:9px 10px;
+    border-radius:9px;
+    cursor:pointer;
+    font-size:11px;
+}
+
+.service-list button:hover{
+    background:rgba(22,131,255,.12);
+    color:#fff;
+}
+
+/* HOW IT WORKS */
+.steps{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:15px;
+}
+
+.step{
+    padding:23px;
+    border:1px solid var(--border);
+    border-radius:18px;
+    background:rgba(255,255,255,.025);
+}
+
+.step-number{
+    font-size:12px;
+    color:#5fdfff;
+    margin-bottom:25px;
+}
+
+.step h3{
+    font-size:16px;
+    margin-bottom:9px;
+}
+
+.step p{
+    color:#8392a8;
+    font-size:12px;
+    line-height:1.7;
+}
+
+/* WHY */
+.why-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:17px;
+}
+
+.why-card{
+    padding:25px;
+    border:1px solid var(--border);
+    background:rgba(255,255,255,.025);
+    border-radius:19px;
+}
+
+.why-card h3{
+    margin-bottom:8px;
+    font-size:16px;
+}
+
+.why-card p{
+    color:#8291a8;
+    font-size:13px;
+    line-height:1.7;
+}
+
+/* CTA */
+.cta{
+    margin:30px 7% 80px;
+    padding:50px;
+    border:1px solid rgba(0,217,255,.16);
+    border-radius:27px;
+    background:
+        radial-gradient(circle at 90% 20%,rgba(0,217,255,.12),transparent 30%),
+        linear-gradient(135deg,#0b1930,#07101e);
+    text-align:center;
+}
+
+.cta h2{
+    font-size:clamp(28px,4vw,43px);
+    margin-bottom:12px;
+}
+
+.cta p{
+    color:#8796ad;
+    margin-bottom:23px;
+}
+
+/* FOOTER */
+footer{
+    border-top:1px solid var(--border);
+    padding:30px 7%;
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    color:#718098;
+    font-size:12px;
+}
+
+/* MODAL */
+.modal{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.72);
+    backdrop-filter:blur(10px);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:15px;
+    z-index:300;
+}
+
+.modal.active{
+    display:flex;
+}
+
+.modal-box{
+    width:100%;
+    max-width:560px;
+    max-height:92vh;
+    overflow-y:auto;
+    background:#081221;
+    border:1px solid var(--border);
+    border-radius:23px;
+    box-shadow:0 30px 100px rgba(0,0,0,.55);
+    padding:22px;
+    position:relative;
+}
+
+.close{
+    position:absolute;
+    right:18px;
+    top:16px;
+    width:32px;
+    height:32px;
+    border:1px solid var(--border);
+    border-radius:50%;
+    background:rgba(255,255,255,.04);
+    color:#fff;
+    cursor:pointer;
+}
+
+.modal-header{
+    padding-right:40px;
+    margin-bottom:20px;
+}
+
+.modal-header h2{
+    font-size:23px;
+}
+
+.modal-header p{
+    color:#8090a8;
+    font-size:12px;
+    margin-top:7px;
+    line-height:1.6;
+}
+
+/* PROGRESS */
+.progress{
+    display:flex;
+    gap:7px;
+    margin-bottom:20px;
+}
+
+.progress-item{
+    height:4px;
+    flex:1;
+    background:#1a2638;
+    border-radius:20px;
+}
+
+.progress-item.active{
+    background:linear-gradient(90deg,var(--blue),var(--cyan));
+}
+
+/* FORM */
+.form-step{
+    display:none;
+}
+
+.form-step.active{
+    display:block;
+}
+
+.field{
+    margin-bottom:13px;
+}
+
+.field label{
+    display:block;
+    color:#c6d2e2;
+    font-size:11px;
+    font-weight:600;
+    margin-bottom:6px;
+}
+
+.required{
+    color:#5fdfff;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    border:1px solid rgba(255,255,255,.09);
+    background:#0d192a;
+    color:#fff;
+    border-radius:11px;
+    padding:12px;
+    outline:none;
+    font-size:12px;
+}
+
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:rgba(0,217,255,.45);
+}
+
+textarea{
+    min-height:80px;
+    resize:vertical;
+}
+
+input[type="file"]{
+    padding:9px;
+}
+
+.file-note{
+    color:#66768e;
+    font-size:10px;
+    margin-top:5px;
+}
+
+.form-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:11px;
+}
+
+.dynamic-title{
+    color:#61ddff;
+    font-size:12px;
+    font-weight:700;
+    margin:3px 0 12px;
+}
+
+.form-actions{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    margin-top:19px;
+}
+
+.form-actions button{
+    flex:1;
+}
+
+.review-box{
+    background:rgba(255,255,255,.035);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:15px;
+}
+
+.review-row{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    padding:8px 0;
+    border-bottom:1px solid rgba(255,255,255,.05);
+    font-size:11px;
+}
+
+.review-row:last-child{
+    border-bottom:0;
+}
+
+.review-row span:first-child{
+    color:#718098;
+}
+
+.review-row span:last-child{
+    color:#dce6f3;
+    text-align:right;
+    max-width:65%;
+    word-break:break-word;
+}
+
+/* SUCCESS */
+.success{
+    text-align:center;
+    padding:20px 5px;
+}
+
+.success-icon{
+    width:65px;
+    height:65px;
+    display:grid;
+    place-items:center;
+    border-radius:50%;
+    margin:0 auto 17px;
+    background:rgba(0,217,255,.1);
+    color:#5fe7ff;
+    font-size:28px;
+}
+
+.order-id{
+    margin:17px auto;
+    padding:13px;
+    border-radius:11px;
+    background:#0d192a;
+    color:#6ce8ff;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+/* MOBILE */
+@media(max-width:950px){
+    .hero-content{
+        width:100%;
+    }
+
+    .hero-card{
+        display:none;
+    }
+
+    .service-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .steps{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:650px){
+    nav{
+        padding:0 5%;
+        height:64px;
+    }
+
+    .nav-links{
+        display:none;
+    }
+
+    .nav-btn{
+        padding:9px 13px;
+        font-size:11px;
+    }
+
+    .hero{
+        min-height:auto;
+        padding:120px 5% 75px;
+    }
+
+    .hero h1{
+        font-size:44px;
+        letter-spacing:-2px;
+    }
+
+    .hero p{
+        font-size:14px;
+    }
+
+    section{
+        padding:65px 5%;
+    }
+
+    .service-grid,
+    .steps,
+    .why-grid{
+        grid-template-columns:1fr;
+    }
+
+    .cta{
+        margin:15px 5% 60px;
+        padding:35px 20px;
+    }
+
+    footer{
+        flex-direction:column;
+        padding:25px 5%;
+    }
+
+    .modal{
+        padding:8px;
+        align-items:flex-end;
+    }
+
+    .modal-box{
+        max-height:94vh;
+        border-radius:22px 22px 10px 10px;
+        padding:18px;
+    }
+
+    .form-row{
+        grid-template-columns:1fr;
+        gap:0;
+    }
+
+    .hero-buttons{
+        width:100%;
+    }
+
+    .primary-btn,
+    .secondary-btn{
+        width:100%;
+    }
+}
+
+/* REVEAL */
+.reveal{
+    opacity:0;
+    transform:translateY(25px);
+    transition:.7s ease;
+}
+
+.reveal.show{
+    opacity:1;
+    transform:translateY(0);
+}
+</style>
+</head>
+
+<body>
+
+<div class="orb one"></div>
+<div class="orb two"></div>
+
+<!-- NAV -->
+<nav>
+    <div class="logo">R&L <span>Online Services</span></div>
+
+    <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#how">How It Works</a>
+        <a href="#why">Why R&L</a>
+    </div>
+
+    <button class="nav-btn" onclick="openRequest()">Request Service</button>
+</nav>
+
+
+<!-- HERO -->
+<header class="hero">
+
+    <div class="hero-content reveal">
+
+        <div class="badge">
+            <span class="badge-dot"></span>
+            ONLINE DIGITAL ASSISTANCE
+        </div>
+
+        <h1>
+            Your <span class="gradient-text">Digital Services</span> Partner.
+        </h1>
+
+        <p>
+            Government online services, job applications, career support,
+            digital design and other online solutions — handled simply,
+            professionally and securely.
+        </p>
+
+        <div class="hero-buttons">
+            <button class="primary-btn" onclick="openRequest()">
+                Request a Service →
+            </button>
+
+            <a class="secondary-btn" href="#services">
+                Explore Services
+            </a>
+        </div>
+
+    </div>
+
+
+    <div class="hero-card">
+
+        <div class="card-title">How R&L works</div>
+
+        <div class="flow">
+
+            <div class="flow-item">
+                <div class="flow-icon">01</div>
+                <div>
+                    <strong>Choose Service</strong>
+                    <small>Tell us what you need</small>
+                </div>
+            </div>
+
+            <div class="flow-item">
+                <div class="flow-icon">02</div>
+                <div>
+                    <strong>Send Details</strong>
+                    <small>Only relevant information</small>
+                </div>
+            </div>
+
+            <div class="flow-item">
+                <div class="flow-icon">03</div>
+                <div>
+                    <strong>We Process</strong>
+                    <small>Professional assistance</small>
+                </div>
+            </div>
+
+            <div class="flow-item">
+                <div class="flow-icon">04</div>
+                <div>
+                    <strong>Receive Result</strong>
+                    <small>Proof or completed work</small>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</header>
+
+
+<!-- SERVICES -->
+<section id="services">
+
+    <div class="section-head reveal">
+        <div class="eyebrow">What We Do</div>
+        <h2>Choose the service you need.</h2>
+        <p>
+            Select a specific service below and the request form will
+            automatically ask for the information relevant to that service.
+        </p>
+    </div>
+
+
+    <div class="service-grid">
+
+        <!-- GOVERNMENT -->
+        <div class="service-card reveal">
+
+            <div class="service-icon">⌂</div>
+
+            <h3>Government Services</h3>
+
+            <p>
+                Assistance with selected government online services.
+            </p>
+
+            <div class="service-list">
+
+                <button onclick="selectService('Birth Certificate Assistance')">
+                    Birth Certificate Assistance
+                </button>
+
+                <button onclick="selectService('NIDA Online Service Assistance')">
+                    NIDA Online Service
+                </button>
+
+                <button onclick="selectService('Loss Report Assistance')">
+                    Loss Report Assistance
+                </button>
+
+                <button onclick="selectService('Other Government Online Service')">
+                    Other Government Service
+                </button>
+
+            </div>
+        </div>
+
+
+        <!-- JOBS -->
+        <div class="service-card reveal">
+
+            <div class="service-icon">◉</div>
+
+            <h3>Jobs & Career</h3>
+
+            <p>
+                Job application and professional career support.
+            </p>
+
+            <div class="service-list">
+
+                <button onclick="selectService('Ajira Portal Application')">
+                    Ajira Portal Application
+                </button>
+
+                <button onclick="selectService('CV Creation / Editing')">
+                    CV Creation / Editing
+                </button>
+
+                <button onclick="selectService('Cover Letter')">
+                    Cover Letter
+                </button>
+
+                <button onclick="selectService('Job Search / Application Assistance')">
+                    Job Search Assistance
+                </button>
+
+            </div>
+        </div>
+
+
+        <!-- DESIGN -->
+        <div class="service-card reveal">
+
+            <div class="service-icon">✦</div>
+
+            <h3>Digital Design</h3>
+
+            <p>
+                Professional designs for individuals and businesses.
+            </p>
+
+            <div class="service-list">
+
+                <button onclick="selectService('Basic Logo')">
+                    Basic Logo
+                </button>
+
+                <button onclick="selectService('Professional Logo')">
+                    Professional Logo
+                </button>
+
+                <button onclick="selectService('Sticker / Label Design')">
+                    Sticker / Label
+                </button>
+
+                <button onclick="selectService('Poster / Flyer')">
+                    Poster / Flyer
+                </button>
+
+                <button onclick="selectService('Business Card')">
+                    Business Card
+                </button>
+
+                <button onclick="selectService('Social Media Design')">
+                    Social Media Design
+                </button>
+
+            </div>
+        </div>
+
+
+        <!-- DIGITAL SETUP -->
+        <div class="service-card reveal">
+
+            <div class="service-icon">⌘</div>
+
+            <h3>Digital Setup</h3>
+
+            <p>
+                Setup and assistance for your digital presence.
+            </p>
+
+            <div class="service-list">
+
+                <button onclick="selectService('Email / Account Setup')">
+                    Email / Account Setup
+                </button>
+
+                <button onclick="selectService('WhatsApp Business Setup')">
+                    WhatsApp Business Setup
+                </button>
+
+                <button onclick="selectService('Website Creation')">
+                    Website Creation
+                </button>
+
+                <button onclick="selectService('Other Digital Service')">
+                    Other Digital Service
+                </button>
+
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- HOW IT WORKS -->
+<section id="how">
+
+    <div class="section-head reveal">
+        <div class="eyebrow">Simple Process</div>
+        <h2>How it works.</h2>
+        <p>
+            A simple process designed to make online services easier for you.
+        </p>
+    </div>
+
+    <div class="steps">
+
+        <div class="step reveal">
+            <div class="step-number">01 — REQUEST</div>
+            <h3>Tell us what you need</h3>
+            <p>
+                Select your service and provide only the information required.
+            </p>
+        </div>
+
+        <div class="step reveal">
+            <div class="step-number">02 — CONFIRM</div>
+            <h3>Review & quotation</h3>
+            <p>
+                We review your request and communicate the service fee before processing.
+            </p>
+        </div>
+
+        <div class="step reveal">
+            <div class="step-number">03 — PROCESS</div>
+            <h3>We do the work</h3>
+            <p>
+                Once payment is verified, we begin processing your request.
+            </p>
+        </div>
+
+        <div class="step reveal">
+            <div class="step-number">04 — DELIVER</div>
+            <h3>Receive your result</h3>
+            <p>
+                You receive the completed work, proof or relevant result.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- WHY -->
+<section id="why">
+
+    <div class="section-head reveal">
+        <div class="eyebrow">Why R&L</div>
+        <h2>Professional. Transparent. Secure.</h2>
+    </div>
+
+    <div class="why-grid">
+
+        <div class="why-card reveal">
+            <h3>🔐 Privacy & Security</h3>
+            <p>
+                We do not request passwords, PINs or OTP codes through this form.
+                Sensitive authentication steps should be completed by the client.
+            </p>
+        </div>
+
+        <div class="why-card reveal">
+            <h3>💳 Transparent Pricing</h3>
+            <p>
+                R&L service fees are separate from official government fees where applicable.
+            </p>
+        </div>
+
+        <div class="why-card reveal">
+            <h3>✓ Client Review</h3>
+            <p>
+                Important information can be reviewed and confirmed before submission.
+            </p>
+        </div>
+
+        <div class="why-card reveal">
+            <h3>⚡ No False Promises</h3>
+            <p>
+                We provide assistance — we do not guarantee government approval,
+                employment or any decision made by an external authority.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CTA -->
+<div class="cta reveal">
+
+    <h2>Need an online service?</h2>
+
+    <p>
+        Tell us what you need and let's get started.
+    </p>
+
+    <button class="primary-btn" onclick="openRequest()">
+        Start Your Request →
+    </button>
+
+</div>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <div>
+        © 2026 R&L Online Services
+    </div>
+
+    <div>
+        Your Digital Services Partner.
+    </div>
+
+</footer>
+
+
+<!-- REQUEST MODAL -->
+<div class="modal" id="requestModal">
+
+    <div class="modal-box">
+
+        <button class="close" onclick="closeRequest()">×</button>
+
+        <div class="modal-header">
+
+            <div class="eyebrow">SERVICE REQUEST</div>
+
+            <h2 id="modalTitle">Request a Service</h2>
+
+            <p id="modalDescription">
+                Select a service to continue.
+            </p>
+
+        </div>
+
+
+        <!-- PROGRESS -->
+        <div class="progress">
+
+            <div class="progress-item active" id="progress1"></div>
+            <div class="progress-item" id="progress2"></div>
+            <div class="progress-item" id="progress3"></div>
+
+        </div>
+
+
+        <!-- STEP 1 -->
+        <div class="form-step active" id="step1">
+
+            <div class="field">
+
+                <label>
+                    Service <span class="required">*</span>
+                </label>
+
+                <select id="serviceSelect" onchange="renderDynamicFields()">
+
+                    <option value="">Select a service</option>
+
+                    <optgroup label="Government Services">
+                        <option>Birth Certificate Assistance</option>
+                        <option>NIDA Online Service Assistance</option>
+                        <option>Loss Report Assistance</option>
+                        <option>Other Government Online Service</option>
+                    </optgroup>
+
+                    <optgroup label="Jobs & Career">
+                        <option>Ajira Portal Application</option>
+                        <option>CV Creation / Editing</option>
+                        <option>Cover Letter</option>
+                        <option>Job Search / Application Assistance</option>
+                    </optgroup>
+
+                    <optgroup label="Digital Design">
+                        <option>Basic Logo</option>
+                        <option>Professional Logo</option>
+                        <option>Sticker / Label Design</option>
+                        <option>Poster / Flyer</option>
+                        <option>Business Card</option>
+                        <option>Social Media Design</option>
+                    </optgroup>
+
+                    <optgroup label="Digital Setup">
+                        <option>Email / Account Setup</option>
+                        <option>WhatsApp Business Setup</option>
+                        <option>Website Creation</option>
+                        <option>Other Digital Service</option>
+                    </optgroup>
+
+                </select>
+
+            </div>
+
+
+            <!-- DYNAMIC FIELDS -->
+            <div id="dynamicFields"></div>
+
+
+            <div class="form-actions">
+
+                <button class="secondary-btn" onclick="closeRequest()">
+                    Cancel
+                </button>
+
+                <button class="primary-btn" onclick="goToStep2()">
+                    Continue →
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- STEP 2 -->
+        <div class="form-step" id="step2">
+
+            <div class="dynamic-title">
+                Your Contact Details
+            </div>
+
+            <div class="form-row">
+
+                <div class="field">
+
+                    <label>
+                        Full Name <span class="required">*</span>
+                    </label>
+
+                    <input
+                        id="fullName"
+                        type="text"
+                        placeholder="Your full name"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        Phone / WhatsApp <span class="required">*</span>
+                    </label>
+
+                    <input
+                        id="phone"
+                        type="tel"
+                        placeholder="07XXXXXXXX"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="field">
+
+                <label>Email</label>
+
+                <input
+                    id="email"
+                    type="email"
+                    placeholder="example@email.com"
+                >
+
+            </div>
+
+
+            <div id="uploadArea"></div>
+
+
+            <div class="field">
+
+                <label>Additional Message</label>
+
+                <textarea
+                    id="message"
+                    placeholder="Anything else we should know?"
+                ></textarea>
+
+            </div>
+
+
+            <div class="form-actions">
+
+                <button class="secondary-btn" onclick="goToStep(1)">
+                    ← Back
+                </button>
+
+                <button class="primary-btn" onclick="goToStep3()">
+                    Review →
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- STEP 3 -->
+        <div class="form-step" id="step3">
+
+            <div class="dynamic-title">
+                Review Your Request
+            </div>
+
+            <div class="review-box" id="reviewBox"></div>
+
+
+            <div class="form-actions">
+
+                <button class="secondary-btn" onclick="goToStep(2)">
+                    ← Edit
+                </button>
+
+                <button class="primary-btn" onclick="submitRequest()">
+                    Submit Request ✓
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- SUCCESS -->
+        <div class="form-step" id="successStep">
+
+            <div class="success">
+
+                <div class="success-icon">✓</div>
+
+                <h2>Request Created</h2>
+
+                <p style="color:#8291a8;font-size:12px;line-height:1.7;margin-top:8px;">
+                    Your request has been prepared successfully.
+                    Continue to WhatsApp to confirm your request with R&L Online Services.
+                </p>
+
+                <div class="order-id" id="orderId">
+                    RL-000000
+                </div>
+
+                <button
+                    class="primary-btn"
+                    style="width:100%;"
+                    onclick="sendWhatsApp()"
+                >
+                    Continue on WhatsApp →
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* ==============================
+   SERVICE DATA
+================================ */
+
+const serviceData = {
+
+    "Birth Certificate Assistance":{
+        description:"Assistance with birth certificate related online services.",
+        fields:[
+            ["requestedService","Requested Service","select","Birth certificate search,New birth certificate,Lost copy,Correction / update"],
+            ["personName","Full Name of Person","text","Full name"],
+            ["dob","Date of Birth","date",""],
+            ["birthPlace","Place of Birth","text","District / hospital / place"],
+            ["fatherName","Father's Full Name","text","Father's full name"],
+            ["motherName","Mother's Full Name","text","Mother's full name"]
+        ],
+        upload:"Supporting document(s), if available"
+    },
+
+
+    "NIDA Online Service Assistance":{
+        description:"Assistance with selected NIDA online services.",
+        fields:[
+            ["nidaService","NIDA Service Needed","select","NIN information,ID replacement,ID information update,Other"],
+            ["nidaName","Full Name","text","Name as registered"],
+            ["nin","NIN (if known)","text","NIN number"],
+            ["nidaDob","Date of Birth","date",""],
+            ["nidaIssue","Briefly describe the issue","textarea","Tell us what you need help with"]
+        ],
+        upload:"Supporting document(s), if available"
+    },
+
+
+    "Loss Report Assistance":{
+        description:"Assistance preparing a loss report request.",
+        fields:[
+            ["lostItem","Item Lost","text","Example: ID, phone, certificate"],
+            ["lossDate","Date Lost","date",""],
+            ["lossPlace","Where was it lost?","text","Area / location"],
+            ["itemDetails","Item Details","textarea","Serial number, IMEI or other identifying details if applicable"]
+        ],
+        upload:"Supporting document(s), if available"
+    },
+
+
+    "Other Government Online Service":{
+        description:"Tell us which government online service you need assistance with.",
+        fields:[
+            ["govService","Service Needed","text","Name of government service"],
+            ["govDetails","Describe What You Need","textarea","Explain your request"]
+        ],
+        upload:"Relevant document(s), if available"
+    },
+
+
+    "Ajira Portal Application":{
+        description:"Professional assistance with an Ajira Portal job application.",
+        fields:[
+            ["vacancy","Position / Vacancy","text","Job title"],
+            ["vacancyLink","Vacancy Link","url","Paste job advert link if available"],
+            ["nin","NIN","text","Your NIN"],
+            ["education","Highest Education","text","Example: Bachelor Degree"],
+            ["experience","Work Experience","textarea","Brief work experience"],
+            ["applicationLetter","Application Letter","file","Upload signed application letter"]
+        ],
+        upload:"CV and other relevant certificates"
+    },
+
+
+    "CV Creation / Editing":{
+        description:"Create or improve a professional CV.",
+        fields:[
+            ["location","Current Location","text","City / region"],
+            ["education","Education","textarea","Your education background"],
+            ["experience","Work Experience","textarea","Your work experience"],
+            ["skills","Skills","textarea","Key professional skills"],
+            ["cvGoal","CV Purpose","text","Example: job application / internship"]
+        ],
+        upload:"Old CV, certificates or other useful documents"
+    },
+
+
+    "Cover Letter":{
+        description:"Professional cover letter tailored to your application.",
+        fields:[
+            ["position","Position Applying For","text","Job title"],
+            ["organization","Organization / Employer","text","Company or institution"],
+            ["jobLink","Job Advert Link","url","Paste link if available"],
+            ["education","Education","text","Highest qualification"],
+            ["experience","Relevant Experience","textarea","Briefly describe relevant experience"],
+            ["skills","Key Skills","textarea","Skills relevant to the position"]
+        ],
+        upload:"CV or job advert screenshot, if available"
+    },
+
+
+    "Job Search / Application Assistance":{
+        description:"Help identifying and applying for suitable opportunities.",
+        fields:[
+            ["jobType","Job / Career Area","text","Example: Accounting, IT, Marketing"],
+            ["education","Education Level","text","Highest qualification"],
+            ["experience","Experience","textarea","Brief work experience"],
+            ["preferredLocation","Preferred Location","text","Where would you like to work?"],
+            ["jobDetails","Anything specific?","textarea","Tell us more about the opportunity you want"]
+        ],
+        upload:"CV and certificates, if available"
+    },
+
+
+    "Basic Logo":{
+        description:"A clean logo design for your brand or business.",
+        fields:[
+            ["businessName","Business / Brand Name","text","Name to appear on logo"],
+            ["businessType","Business Type","text","Example: Fashion, Food, Beauty"],
+            ["colors","Preferred Colors","text","Example: Black & Gold"],
+            ["slogan","Slogan","text","Optional"],
+            ["style","Preferred Style","select","Minimal,Modern,Luxury,Simple,Bold,Creative"]
+        ],
+        upload:"Reference image or existing logo, if available"
+    },
+
+
+    "Professional Logo":{
+        description:"A premium logo concept designed for a professional brand.",
+        fields:[
+            ["businessName","Business / Brand Name","text","Name to appear on logo"],
+            ["businessType","Business Type","text","What does the business do?"],
+            ["colors","Preferred Colors","text","Preferred brand colors"],
+            ["slogan","Slogan","text","Optional"],
+            ["style","Preferred Style","select","Minimal,Modern,Luxury,Corporate,Bold,Creative"],
+            ["logoIdea","Describe Your Idea","textarea","Tell us how you imagine the logo"]
+        ],
+        upload:"Reference images / inspiration, if available"
+    },
+
+
+    "Sticker / Label Design":{
+        description:"Professional product sticker or label design.",
+        fields:[
+            ["productName","Product Name","text","Name on the product"],
+            ["productType","Product Type","text","Example: Body wash, soap"],
+            ["volume","Size / Volume","text","Example: 500ml"],
+            ["ingredients","Ingredients / Details","textarea","Product information to appear"],
+            ["contact","Contact Information","text","Phone / WhatsApp"],
+            ["labelSize","Sticker / Label Size","text","If known"]
+        ],
+        upload:"Logo, product photo or reference design"
+    },
+
+
+    "Poster / Flyer":{
+        description:"Professional poster or flyer for your business, event or offer.",
+        fields:[
+            ["posterTitle","Main Headline","text","Main text on poster"],
+            ["businessName","Business / Event Name","text","Business or event"],
+            ["offer","Offer / Price","text","Optional"],
+            ["contact","Phone / WhatsApp","text","Contact number"],
+            ["location","Location","text","Business/event location"],
+            ["posterDetails","Other Details","textarea","Date, time, services or other information"]
+        ],
+        upload:"Logo, product photos or other images"
+    },
+
+
+    "Business Card":{
+        description:"Professional business card design.",
+        fields:[
+            ["personName","Name","text","Your full name"],
+            ["position","Position / Title","text","Example: CEO / Manager"],
+            ["businessName","Business Name","text","Company / business"],
+            ["phone","Phone / WhatsApp","text","Phone number"],
+            ["emailCard","Email","email","Business email"],
+            ["location","Location","text","Business location"],
+            ["socials","Social Media","text","Instagram / Facebook etc."]
+        ],
+        upload:"Business logo, if available"
+    },
+
+
+    "Social Media Design":{
+        description:"Professional social media graphic for your campaign or business.",
+        fields:[
+            ["platform","Platform","select","Instagram,Facebook,WhatsApp, TikTok,Other"],
+            ["purpose","Design Purpose","text","Example: Promotion, announcement"],
+            ["headline","Main Text","text","Headline on the design"],
+            ["offer","Offer / Price","text","Optional"],
+            ["designDetails","Other Details","textarea","Additional information"]
+        ],
+        upload:"Logo, product photos or reference images"
+    },
+
+
+    "Email / Account Setup":{
+        description:"Assistance setting up a digital email or account.",
+        fields:[
+            ["accountType","Account Type","text","Example: Gmail, professional email"],
+            ["desiredName","Desired Email / Username","text","Your preferred address"],
+            ["recoveryEmail","Recovery Email","email","Optional"],
+            ["setupDetails","What do you need?","textarea","Describe the setup needed"]
+        ]
+    },
+
+
+    "WhatsApp Business Setup":{
+        description:"Professional setup guidance for WhatsApp Business.",
+        fields:[
+            ["businessName","Business Name","text","Name shown to customers"],
+            ["category","Business Category","text","Example: Fashion, Restaurant"],
+            ["description","Business Description","textarea","Short description"],
+            ["hours","Business Hours","text","Example: Mon-Sat 8AM-6PM"],
+            ["setupNeeds","Setup Needed","textarea","Tell us what you want configured"]
+        ],
+        upload:"Business logo / photos, if available"
+    },
+
+
+    "Website Creation":{
+        description:"Website planning and creation for your business or project.",
+        fields:[
+            ["websiteName","Business / Website Name","text","Name"],
+            ["websiteType","Website Type","text","Example: Business, portfolio, shop"],
+            ["pages","Pages Needed","textarea","Example: Home, About, Services, Contact"],
+            ["features","Features Needed","textarea","Example: WhatsApp button, shop, booking"],
+            ["reference","Reference Website","url","Optional"]
+        ],
+        upload:"Logo, images or content, if available"
+    },
+
+
+    "Other Digital Service":{
+        description:"Tell us about the digital service you need.",
+        fields:[
+            ["digitalService","Service Needed","text","What do you need?"],
+            ["digitalDetails","Describe Your Request","textarea","Give us details about your request"]
+        ],
+        upload:"Relevant files, if available"
+    }
+
+};
+
+
+/* ==============================
+   GLOBAL VARIABLES
+================================ */
+
+let currentStep = 1;
+let currentService = "";
+let currentOrderId = "";
+let requestData = {};
+
+
+/* ==============================
+   OPEN / CLOSE MODAL
+================================ */
+
+function openRequest(){
+
+    document.getElementById("requestModal").classList.add("active");
+
+    currentStep = 1;
+
+    resetForm();
+
+    goToStep(1);
+}
+
+
+function closeRequest(){
+
+    document.getElementById("requestModal").classList.remove("active");
+
+}
+
+
+/* ==============================
+   SELECT SERVICE
+================================ */
+
+function selectService(service){
+
+    openRequest();
+
+    setTimeout(()=>{
+
+        document.getElementById("serviceSelect").value = service;
+
+        currentService = service;
+
+        renderDynamicFields();
+
+    },50);
+
+}
+
+
+/* ==============================
+   RENDER DYNAMIC FIELDS
+================================ */
+
+function renderDynamicFields(){
+
+    const service =
+        document.getElementById("serviceSelect").value;
+
+    currentService = service;
+
+    const container =
+        document.getElementById("dynamicFields");
+
+    container.innerHTML = "";
+
+    const data = serviceData[service];
+
+    if(!data){
+
+        document.getElementById("modalTitle").textContent =
+            "Request a Service";
+
+        document.getElementById("modalDescription").textContent =
+            "Select a service to continue.";
+
+        return;
+    }
+
+    document.getElementById("modalTitle").textContent =
+        service;
+
+    document.getElementById("modalDescription").textContent =
+        data.description;
+
+
+    data.fields.forEach(field=>{
+
+        const id = field[0];
+        const label = field[1];
+        const type = field[2];
+        const placeholder = field[3] || "";
+
+        const div = document.createElement("div");
+
+        div.className = "field";
+
+        let html = `
+            <label>
+                ${label}
+                <span class="required">*</span>
+            </label>
+        `;
+
+
+        if(type === "select"){
+
+            const options = placeholder.split(",");
+
+            html += `
+                <select id="${id}">
+                    <option value="">Select</option>
+                    ${options.map(x=>`
+                        <option>${x.trim()}</option>
+                    `).join("")}
+                </select>
+            `;
+
+        }
+
+        else if(type === "textarea"){
+
+            html += `
+                <textarea
+                    id="${id}"
+                    placeholder="${placeholder}"
+                ></textarea>
+            `;
+
+        }
+
+        else if(type === "file"){
+
+            html += `
+                <input
+                    id="${id}"
+                    type="file"
+                >
+            `;
+
+        }
+
+        else{
+
+            html += `
+                <input
+                    id="${id}"
+                    type="${type}"
+                    placeholder="${placeholder}"
+                >
+            `;
+
+        }
+
+        div.innerHTML = html;
+
+        container.appendChild(div);
+
+    });
+
+}
+
+
+/* ==============================
+   UPLOAD AREA
+================================ */
+
+function renderUploadArea(){
+
+    const area =
+        document.getElementById("uploadArea");
+
+    const data = serviceData[currentService];
+
+    area.innerHTML = "";
+
+    if(!data || !data.upload) return;
+
+    area.innerHTML = `
+        <div class="field">
+
+            <label>
+                ${data.upload}
+            </label>
+
+            <input
+                id="supportingFiles"
+                type="file"
+                multiple
+            >
+
+            <div class="file-note">
+                Files are not uploaded to a server in this V2 frontend demo.
+                Backend upload will be connected later.
+            </div>
+
+        </div>
+    `;
+
+}
+
+
+/* ==============================
+   VALIDATE STEP 1
+================================ */
+
+function validateDynamicFields(){
+
+    const data = serviceData[currentService];
+
+    if(!data) return false;
+
+    for(const field of data.fields){
+
+        const id = field[0];
+
+        const element =
+            document.getElementById(id);
+
+        if(!element) continue;
+
+        if(!element.value.trim()){
+
+            alert("Please complete: " + field[1]);
+
+            element.focus();
+
+            return false;
+
+        }
+
+    }
+
+    return true;
+}
+
+
+/* ==============================
+   STEP 2
+================================ */
+
+function goToStep2(){
+
+    if(!currentService){
+
+        alert("Please select a service first.");
+
+        return;
+    }
+
+    if(!validateDynamicFields()) return;
+
+    renderUploadArea();
+
+    goToStep(2);
+
+}
+
+
+/* ==============================
+   STEP 3
+================================ */
+
+function goToStep3(){
+
+    const name =
+        document.getElementById("fullName").value.trim();
+
+    const phone =
+        document.getElementById("phone").value.trim();
+
+    if(!name){
+
+        alert("Please enter your full name.");
+
+        document.getElementById("fullName").focus();
+
+        return;
+    }
+
+    if(!phone){
+
+        alert("Please enter your phone / WhatsApp number.");
+
+        document.getElementById("phone").focus();
+
+        return;
+    }
+
+
+    buildReview();
+
+    goToStep(3);
+
+}
+
+
+/* ==============================
+   GO TO STEP
+================================ */
+
+function goToStep(step){
+
+    currentStep = step;
+
+    document.querySelectorAll(".form-step")
+        .forEach(x=>x.classList.remove("active"));
+
+    if(step === 1)
+        document.getElementById("step1").classList.add("active");
+
+    if(step === 2)
+        document.getElementById("step2").classList.add("active");
+
+    if(step === 3)
+        document.getElementById("step3").classList.add("active");
+
+
+    document.getElementById("progress1")
+        .classList.toggle("active",step>=1);
+
+    document.getElementById("progress2")
+        .classList.toggle("active",step>=2);
+
+    document.getElementById("progress3")
+        .classList.toggle("active",step>=3);
+
+}
+
+
+/* ==============================
+   BUILD REVIEW
+================================ */
+
+function buildReview(){
+
+    const box =
+        document.getElementById("reviewBox");
+
+    let html = "";
+
+    html += reviewRow(
+        "Service",
+        currentService
+    );
+
+
+    const data = serviceData[currentService];
+
+    data.fields.forEach(field=>{
+
+        const element =
+            document.getElementById(field[0]);
+
+        if(!element) return;
+
+        let value = element.value || "—";
+
+        if(element.type === "file"){
+
+            value =
+                element.files.length
+                ? element.files[0].name
+                : "No file selected";
+
+        }
+
+        html += reviewRow(field[1],value);
+
+    });
+
+
+    const name =
+        document.getElementById("fullName").value;
+
+    const phone =
+        document.getElementById("phone").value;
+
+    const email =
+        document.getElementById("email").value;
+
+
+    html += reviewRow("Full Name",name);
+    html += reviewRow("Phone / WhatsApp",phone);
+
+    if(email)
+        html += reviewRow("Email",email);
+
+
+    const message =
+        document.getElementById("message").value;
+
+    if(message)
+        html += reviewRow("Message",message);
+
+
+    box.innerHTML = html;
+
+}
+
+
+function reviewRow(label,value){
+
+    return `
+        <div class="review-row">
+            <span>${escapeHTML(label)}</span>
+            <span>${escapeHTML(value)}</span>
+        </div>
+    `;
+
+}
+
+
+/* ==============================
+   SUBMIT
+================================ */
+
+function submitRequest(){
+
+    currentOrderId =
+        "RL-" +
+        Date.now().toString().slice(-6);
+
+    document.getElementById("orderId").textContent =
+        currentOrderId;
+
+
+    requestData = collectRequestData();
+
+
+    document.querySelectorAll(".form-step")
+        .forEach(x=>x.classList.remove("active"));
+
+    document.getElementById("successStep")
+        .classList.add("active");
+
+
+    document.querySelectorAll(".progress-item")
+        .forEach(x=>x.classList.add("active"));
+
+}
+
+
+/* ==============================
+   COLLECT DATA
+================================ */
+
+function collectRequestData(){
+
+    const result = {
+
+        orderId:currentOrderId,
+
+        service:currentService,
+
+        fullName:
+            document.getElementById("fullName").value,
+
+        phone:
+            document.getElementById("phone").value,
+
+        email:
+            document.getElementById("email").value,
+
+        message:
+            document.getElementById("message").value,
+
+        details:{}
+
+    };
+
+
+    const data = serviceData[currentService];
+
+    if(data){
+
+        data.fields.forEach(field=>{
+
+            const el =
+                document.getElementById(field[0]);
+
+            if(!el) return;
+
+            result.details[field[1]] =
+                el.value;
+
+        });
+
+    }
+
+    return result;
+
+}
+
+
+/* ==============================
+   WHATSAPP
+================================ */
+
+function sendWhatsApp(){
+
+    const number = "255769222315";
+
+    let text =
+`Hello R&L Online Services 👋
+
+I would like to request your service.
+
+Order ID: ${currentOrderId}
+
+Service: ${currentService}
+
+Name: ${requestData.fullName}
+
+Phone: ${requestData.phone}`;
+
+    if(requestData.email){
+
+        text +=
+        `\nEmail: ${requestData.email}`;
+
+    }
+
+    text +=
+`\n\nService Details:`;
+
+    Object.entries(requestData.details)
+        .forEach(([key,value])=>{
+
+            if(value){
+
+                text +=
+                `\n• ${key}: ${value}`;
+
+            }
+
+        });
+
+
+    if(requestData.message){
+
+        text +=
+        `\n\nAdditional Message:\n${requestData.message}`;
+
+    }
+
+
+    text +=
+`\n\nPlease confirm my request and advise me on the next step.`;
+
+    const url =
+        "https://wa.me/" +
+        number +
+        "?text=" +
+        encodeURIComponent(text);
+
+
+    window.open(url,"_blank");
+
+}
+
+
+/* ==============================
+   RESET
+================================ */
+
+function resetForm(){
+
+    document.getElementById("serviceSelect").value = "";
+
+    document.getElementById("dynamicFields").innerHTML = "";
+
+    document.getElementById("uploadArea").innerHTML = "";
+
+    document.getElementById("fullName").value = "";
+
+    document.getElementById("phone").value = "";
+
+    document.getElementById("email").value = "";
+
+    document.getElementById("message").value = "";
+
+    document.getElementById("reviewBox").innerHTML = "";
+
+    currentService = "";
+
+    requestData = {};
+
+    document.getElementById("modalTitle").textContent =
+        "Request a Service";
+
+    document.getElementById("modalDescription").textContent =
+        "Select a service to continue.";
+
+}
+
+
+/* ==============================
+   SECURITY / HTML ESCAPE
+================================ */
+
+function escapeHTML(value){
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* ==============================
+   SCROLL REVEAL
+================================ */
+
+const observer =
+    new IntersectionObserver(entries=>{
+
+        entries.forEach(entry=>{
+
+            if(entry.isIntersecting){
+
+                entry.target.classList.add("show");
+
+            }
+
+        });
+
+    },{
+        threshold:.08
+    });
+
+
+document.querySelectorAll(".reveal")
+    .forEach(el=>observer.observe(el));
+
+
+/* ==============================
+   CLOSE MODAL OUTSIDE
+================================ */
+
+document.getElementById("requestModal")
+    .addEventListener("click",function(e){
+
+        if(e.target === this){
+
+            closeRequest();
+
+        }
+
+    });
+
+</script>
+
+</body>
+</html>

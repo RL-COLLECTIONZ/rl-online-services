@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>R&L Admin Login</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial,sans-serif;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#07111f;
+    color:white;
+    padding:20px;
+}
+
+.login-box{
+    width:100%;
+    max-width:400px;
+    background:#0d1b2a;
+    padding:35px 30px;
+    border-radius:18px;
+    border:1px solid #1e3a56;
+    box-shadow:0 20px 50px rgba(0,0,0,.35);
+}
+
+.logo{
+    text-align:center;
+    font-size:28px;
+    font-weight:bold;
+    margin-bottom:8px;
+    color:#38bdf8;
+}
+
+.subtitle{
+    text-align:center;
+    color:#94a3b8;
+    margin-bottom:30px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    color:#cbd5e1;
+}
+
+input{
+    width:100%;
+    padding:14px;
+    margin-bottom:18px;
+    border-radius:10px;
+    border:1px solid #29445f;
+    background:#081522;
+    color:white;
+    outline:none;
+    font-size:15px;
+}
+
+input:focus{
+    border-color:#38bdf8;
+}
+
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:10px;
+    background:#0ea5e9;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#0284c7;
+}
+
+button:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
+#error{
+    display:none;
+    margin-bottom:18px;
+    padding:12px;
+    border-radius:8px;
+    background:#451a1a;
+    color:#fca5a5;
+    text-align:center;
+}
+
+.loading{
+    display:none;
+    text-align:center;
+    margin-top:15px;
+    color:#94a3b8;
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-box">
+
+    <div class="logo">R&L Online Services</div>
+
+    <div class="subtitle">
+        Admin Dashboard Login
+    </div>
+
+    <div id="error"></div>
+
+    <form id="loginForm">
+
+        <label for="username">Username</label>
+
+        <input
+            type="text"
+            id="username"
+            placeholder="Enter username"
+            autocomplete="username"
+            required
+        >
+
+        <label for="password">Password</label>
+
+        <input
+            type="password"
+            id="password"
+            placeholder="Enter password"
+            autocomplete="current-password"
+            required
+        >
+
+        <button type="submit" id="loginBtn">
+            Login
+        </button>
+
+        <div class="loading" id="loading">
+            Checking login...
+        </div>
+
+    </form>
+
+</div>
+
+<script>
+
+const loginForm = document.getElementById("loginForm");
+const loginBtn = document.getElementById("loginBtn");
+const errorBox = document.getElementById("error");
+const loading = document.getElementById("loading");
+
+loginForm.addEventListener("submit", async function(e){
+
+    e.preventDefault();
+
+    errorBox.style.display = "none";
+    loading.style.display = "block";
+    loginBtn.disabled = true;
+
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value;
+
+    try {
+
+        const response = await fetch("/api/admin/login", {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                username: username,
+                password: password
+            })
+
+        });
+
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+            throw new Error(
+                result.message || "Invalid username or password."
+            );
+        }
+
+        // Save secure login token
+        sessionStorage.setItem(
+            "rl_admin_token",
+            result.token
+        );
+
+        // Open admin dashboard
+        window.location.href = "/admin.html";
+
+    } catch (error) {
+
+        console.error("Login error:", error);
+
+        errorBox.textContent =
+            error.message || "Login failed.";
+
+        errorBox.style.display = "block";
+
+    } finally {
+
+        loading.style.display = "none";
+        loginBtn.disabled = false;
+
+    }
+
+});
+
+</script>
+
+</body>
+</html>
