@@ -12,7 +12,6 @@ const jwt = require("jsonwebtoken");
 // Middleware
 app.use(cors());
 app.use(express.json());
-
 // MongoDB Connection
 mongoose
   .connect(process.env.MONGODB_URI)
