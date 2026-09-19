@@ -900,13 +900,14 @@
 
 
             const result =
-                await response.json();
+    await response.json();
 
+console.log("API RESPONSE:", result);
 
-            if (
-                !response.ok ||
-                !result.success
-            ) {
+if (
+    !response.ok ||
+    !result.success
+) {
 
                 throw new Error(
                     result.message ||
