@@ -1115,23 +1115,39 @@ function updateStats(orders) {
         orders.length;
 
     document.getElementById("newOrders").textContent =
-        orders.filter(order => order.status === "NEW").length;
-
-    const inProgressStatuses = [
-        "QUOTATION",
-        "PAYMENT_PENDING",
-        "PAID",
-        "PROCESSING",
-        "CLIENT_REVIEW"
-    ];
-
-    document.getElementById("progressOrders").textContent =
         orders.filter(order =>
-            inProgressStatuses.includes(order.status)
+            order.status === "NEW"
+        ).length;
+
+    document.getElementById("paymentPendingOrders").textContent =
+        orders.filter(order =>
+            order.status === "PAYMENT_PENDING"
+        ).length;
+
+    document.getElementById("paidOrders").textContent =
+        orders.filter(order =>
+            order.status === "PAID"
+        ).length;
+
+    document.getElementById("processingOrders").textContent =
+        orders.filter(order =>
+            order.status === "PROCESSING"
+        ).length;
+
+    document.getElementById("reviewOrders").textContent =
+        orders.filter(order =>
+            order.status === "CLIENT_REVIEW"
         ).length;
 
     document.getElementById("completedOrders").textContent =
-        orders.filter(order => order.status === "COMPLETED").length;
+        orders.filter(order =>
+            order.status === "COMPLETED"
+        ).length;
+
+    document.getElementById("cancelledOrders").textContent =
+        orders.filter(order =>
+            order.status === "CANCELLED"
+        ).length;
 }
 
 
