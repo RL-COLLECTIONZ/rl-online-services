@@ -4,10 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>R&L Online Services — Admin Dashboard</title>
+<title>R&L Online Services — Admin</title>
 
 <style>
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -25,6 +24,95 @@ input,
 select,
 textarea {
     font-family: inherit;
+}
+
+/* =========================
+   LOGIN
+========================= */
+
+#loginScreen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: linear-gradient(135deg, #0b1220, #172554);
+}
+
+.login-box {
+    width: 100%;
+    max-width: 400px;
+    background: white;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 15px 40px rgba(0,0,0,.25);
+}
+
+.login-box h1 {
+    font-size: 24px;
+    margin-bottom: 6px;
+    color: #0f172a;
+}
+
+.login-box p {
+    color: #64748b;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.login-box label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: #334155;
+    margin-bottom: 6px;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    outline: none;
+}
+
+.login-box input:focus {
+    border-color: #2563eb;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.login-btn:hover {
+    background: #1d4ed8;
+}
+
+.login-error {
+    background: #fee2e2;
+    color: #b91c1c;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 13px;
+    display: none;
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
+#dashboardScreen {
+    display: none;
 }
 
 .header {
@@ -91,7 +179,7 @@ textarea {
     background: white;
     padding: 19px;
     border-radius: 12px;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+    box-shadow: 0 3px 12px rgba(0,0,0,.06);
     border-left: 4px solid #2563eb;
 }
 
@@ -137,7 +225,7 @@ textarea {
     display: grid;
     grid-template-columns: 1fr 180px 180px auto;
     gap: 10px;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.05);
+    box-shadow: 0 3px 12px rgba(0,0,0,.05);
 }
 
 .toolbar input,
@@ -151,11 +239,6 @@ textarea {
     outline: none;
 }
 
-.toolbar input:focus,
-.toolbar select:focus {
-    border-color: #2563eb;
-}
-
 .refresh-btn {
     padding: 12px 17px;
     border: none;
@@ -164,10 +247,6 @@ textarea {
     color: white;
     cursor: pointer;
     font-weight: 600;
-}
-
-.refresh-btn:hover {
-    background: #1d4ed8;
 }
 
 /* =========================
@@ -183,7 +262,7 @@ textarea {
     background: white;
     border-radius: 12px;
     padding: 20px;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+    box-shadow: 0 3px 12px rgba(0,0,0,.06);
 }
 
 .order-top {
@@ -252,10 +331,6 @@ textarea {
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
-}
-
-.view-details-btn:hover {
-    background: #1d4ed8;
 }
 
 /* =========================
@@ -385,7 +460,6 @@ textarea {
 ========================= */
 
 @media (max-width: 900px) {
-
     .stats {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -404,14 +478,9 @@ textarea {
 }
 
 @media (max-width: 700px) {
-
     .header {
         flex-direction: column;
         align-items: flex-start;
-    }
-
-    .stats {
-        grid-template-columns: repeat(2, 1fr);
     }
 
     .customer-summary {
@@ -437,7 +506,6 @@ textarea {
 }
 
 @media (max-width: 430px) {
-
     .stats {
         grid-template-columns: 1fr;
     }
@@ -451,17 +519,86 @@ textarea {
         flex-direction: column;
     }
 }
-
 </style>
 </head>
 
 <body>
 
+<!-- =========================
+     LOGIN SCREEN
+========================= -->
+
+<section id="loginScreen">
+
+    <div class="login-box">
+
+        <h1>R&L Online Services</h1>
+
+        <p>Administrator Login</p>
+
+        <div
+            id="loginError"
+            class="login-error">
+        </div>
+
+        <form id="loginForm">
+
+            <label for="username">
+                Username
+            </label>
+
+            <input
+                type="text"
+                id="username"
+                autocomplete="username"
+                required
+            >
+
+            <label for="password">
+                Password
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                autocomplete="current-password"
+                required
+            >
+
+            <button
+                type="submit"
+                class="login-btn"
+                id="loginButton">
+
+                Login
+
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     DASHBOARD
+========================= -->
+
+<section id="dashboardScreen">
+
 <header class="header">
 
     <div class="header-left">
-        <h1>R&L Online Services</h1>
-        <span>Admin Dashboard</span>
+
+        <h1>
+            R&L Online Services
+        </h1>
+
+        <span>
+            Admin Dashboard
+        </span>
+
     </div>
 
     <div class="header-center">
@@ -472,17 +609,15 @@ textarea {
         type="button"
         onclick="logoutAdmin()"
         class="logout-btn">
+
         Logout
+
     </button>
 
 </header>
 
 
 <main class="container">
-
-    <!-- =========================
-         STATISTICS
-    ========================== -->
 
     <section class="stats">
 
@@ -533,10 +668,6 @@ textarea {
 
     </section>
 
-
-    <!-- =========================
-         SEARCH
-    ========================== -->
 
     <section class="toolbar">
 
@@ -589,6 +720,1080 @@ textarea {
 
         <button
             type="button"
+            onclick="loadOrders()"
+            class="refresh-btn">
+
+            🔄 Refresh
+
+        </button>
+
+    </section>
+
+
+    <section
+        id="orders"
+        class="orders">
+
+        <div class="loading">
+            🔄 Loading orders...
+        </div>
+
+    </section>
+
+</main>
+
+</section>
+
+
+<script>
+
+/* =========================================
+   API
+========================================= */
+
+const API_BASE_URL =
+    "https://rl-online-services.onrender.com";
+
+
+/* =========================================
+   ELEMENTS
+========================================= */
+
+const loginScreen =
+    document.getElementById(
+        "loginScreen"
+    );
+
+const dashboardScreen =
+    document.getElementById(
+        "dashboardScreen"
+    );
+
+const loginForm =
+    document.getElementById(
+        "loginForm"
+    );
+
+const loginError =
+    document.getElementById(
+        "loginError"
+    );
+
+const loginButton =
+    document.getElementById(
+        "loginButton"
+    );
+
+
+/* =========================================
+   AUTH
+========================================= */
+
+function getAdminToken() {
+
+    return sessionStorage.getItem(
+        "rl_admin_token"
+    );
+
+}
+
+
+function showLogin() {
+
+    loginScreen.style.display =
+        "flex";
+
+    dashboardScreen.style.display =
+        "none";
+
+}
+
+
+function showDashboard() {
+
+    loginScreen.style.display =
+        "none";
+
+    dashboardScreen.style.display =
+        "block";
+
+}
+
+
+function logoutAdmin() {
+
+    sessionStorage.removeItem(
+        "rl_admin_token"
+    );
+
+    showLogin();
+
+}
+
+
+/* =========================================
+   JWT
+========================================= */
+
+function isTokenValid(token) {
+
+    if (!token) {
+        return false;
+    }
+
+    try {
+
+        const parts =
+            token.split(".");
+
+        if (parts.length !== 3) {
+            return false;
+        }
+
+        const payload =
+            JSON.parse(
+                atob(
+                    parts[1]
+                )
+            );
+
+        if (
+            !payload.exp
+        ) {
+            return false;
+        }
+
+        return (
+            payload.exp * 1000 >
+            Date.now()
+        );
+
+    } catch (error) {
+
+        return false;
+
+    }
+
+}
+
+
+function startTokenTimer() {
+
+    const token =
+        getAdminToken();
+
+    if (!token) {
+        return;
+    }
+
+    try {
+
+        const payload =
+            JSON.parse(
+                atob(
+                    token.split(".")[1]
+                )
+            );
+
+        const remaining =
+            payload.exp * 1000 -
+            Date.now();
+
+        if (remaining <= 0) {
+
+            logoutAdmin();
+
+            return;
+
+        }
+
+        setTimeout(
+            logoutAdmin,
+            remaining
+        );
+
+    } catch (error) {
+
+        logoutAdmin();
+
+    }
+
+}
+
+
+/* =========================================
+   LOGIN
+========================================= */
+
+loginForm.addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+        loginError.style.display =
+            "none";
+
+        loginButton.disabled =
+            true;
+
+        loginButton.textContent =
+            "Logging in...";
+
+
+        const username =
+            document
+                .getElementById(
+                    "username"
+                )
+                .value
+                .trim();
+
+
+        const password =
+            document
+                .getElementById(
+                    "password"
+                )
+                .value;
+
+
+        try {
+
+            const response =
+                await fetch(
+                    `${API_BASE_URL}/api/admin/login`,
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            username,
+                            password
+                        })
+                    }
+                );
+
+
+            const result =
+                await response.json();
+
+
+            if (
+                !response.ok ||
+                !result.success ||
+                !result.token
+            ) {
+
+                throw new Error(
+                    result.message ||
+                    "Invalid username or password."
+                );
+
+            }
+
+
+            sessionStorage.setItem(
+                "rl_admin_token",
+                result.token
+            );
+
+
+            showDashboard();
+
+            startTokenTimer();
+
+            loadOrders();
+
+
+        } catch (error) {
+
+            console.error(
+                "Login error:",
+                error
+            );
+
+            loginError.textContent =
+                "❌ " +
+                (
+                    error.message ||
+                    "Login failed."
+                );
+
+            loginError.style.display =
+                "block";
+
+        } finally {
+
+            loginButton.disabled =
+                false;
+
+            loginButton.textContent =
+                "Login";
+
+        }
+
+    }
+);
+
+
+/* =========================================
+   SECURITY
+========================================= */
+
+function escapeHTML(value) {
+
+    if (
+        value === null ||
+        value === undefined
+    ) {
+        return "-";
+    }
+
+    return String(value)
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+function safeOrderId(value) {
+
+    return String(
+        value || ""
+    )
+    .replace(
+        /\\/g,
+        "\\\\"
+    )
+    .replace(
+        /'/g,
+        "\\'"
+    );
+
+}
+
+
+/* =========================================
+   ORDERS
+========================================= */
+
+let allOrders = [];
+
+
+async function loadOrders() {
+
+    const ordersContainer =
+        document.getElementById(
+            "orders"
+        );
+
+
+    ordersContainer.innerHTML = `
+        <div class="loading">
+            🔄 Loading orders...
+        </div>
+    `;
+
+
+    try {
+
+        const token =
+            getAdminToken();
+
+
+        if (
+            !isTokenValid(token)
+        ) {
+
+            logoutAdmin();
+
+            return;
+
+        }
+
+
+        const response =
+            await fetch(
+                `${API_BASE_URL}/api/orders`,
+                {
+                    method: "GET",
+
+                    headers: {
+                        "Authorization":
+                            `Bearer ${token}`
+                    }
+                }
+            );
+
+
+        if (
+            response.status === 401
+        ) {
+
+            logoutAdmin();
+
+            return;
+
+        }
+
+
+        const result =
+            await response.json();
+
+
+        if (
+            !response.ok ||
+            !result.success
+        ) {
+
+            throw new Error(
+                result.message ||
+                "Failed to load orders."
+            );
+
+        }
+
+
+        allOrders =
+            Array.isArray(
+                result.orders
+            )
+                ? result.orders
+                : [];
+
+
+        updateStats(
+            allOrders
+        );
+
+
+        filterOrders();
+
+
+    } catch (error) {
+
+        console.error(
+            "Load orders error:",
+            error
+        );
+
+
+        ordersContainer.innerHTML = `
+            <div class="error">
+
+                ❌ Failed to load orders.
+
+                <br><br>
+
+                ${escapeHTML(
+                    error.message ||
+                    "Plears</h3>
+            <strong id="newOrders">0</strong>
+        </div>
+
+        <div class="stat orange">
+            <h3>Payment Pending</h3>
+            <strong id="paymentPendingOrders">0</strong>
+        </div>
+
+        <div class="stat green">
+            <h3>Paid Orders</h3>
+            <strong id="paidOrders">0</strong>
+        </div>
+
+    </section>
+
+
+    <section class="stats secondary">
+
+        <div class="stat cyan">
+            <h3>Processing</h3>
+            <strong id="processingOrders">0</strong>
+        </div>
+
+        <div class="stat purple">
+            <h3>Client Review</h3>
+            <strong id="reviewOrders">0</strong>
+        </div>
+
+        <div class="stat green">
+            <h3>Completed</h3>
+            <strong id="completedOrders">0</strong>
+        </div>
+
+        <div class="stat red">
+            <h3>Cancelled</h3>
+            <strong id="cancelledOrders">0</strong>
+        </div>
+
+    </section>
+
+
+    <section class="toolbar">
+
+        <input
+            type="text"
+            id="search"
+            placeholder="Search Order ID, name, phone, email or service..."
+        >
+
+        <select id="statusFilter">
+
+            <option value="ALL">
+                All Order Statuses
+            </option>
+
+            <option value="NEW">NEW</option>
+            <option value="QUOTATION">QUOTATION</option>
+            <option value="PAYMENT_PENDING">
+                PAYMENT PENDING
+            </option>
+            <option value="PAID">PAID</option>
+            <option value="PROCESSING">
+                PROCESSING
+            </option>
+            <option value="CLIENT_REVIEW">
+                CLIENT REVIEW
+            </option>
+            <option value="COMPLETED">
+                COMPLETED
+            </option>
+            <option value="CANCELLED">
+                CANCELLED
+            </option>
+
+        </select>
+
+
+        <select id="paymentFilter">
+
+            <option value="ALL">
+                All Payment Statuses
+            </option>
+
+            <option value="PENDING">PENDING</option>
+            <option value="PAID">PAID</option>
+            <option value="REFUNDED">REFUNDED</option>
+
+        </select>
+
+
+        <button
+            type="button"
+            onclick="loadOrders()"
+            class="refresh-btn">
+
+            🔄 Refresh
+
+        </button>
+
+    </section>
+
+
+    <section
+        id="orders"
+        class="orders">
+
+        <div class="loading">
+            🔄 Loading orders...
+        </div>
+
+    </section>
+
+</main>
+
+</section>
+
+
+<script>
+
+/* =========================================
+   API
+========================================= */
+
+const API_BASE_URL =
+    "https://rl-online-services.onrender.com";
+
+
+/* =========================================
+   ELEMENTS
+========================================= */
+
+const loginScreen =
+    document.getElementById(
+        "loginScreen"
+    );
+
+const dashboardScreen =
+    document.getElementById(
+        "dashboardScreen"
+    );
+
+const loginForm =
+    document.getElementById(
+        "loginForm"
+    );
+
+const loginError =
+    document.getElementById(
+        "loginError"
+    );
+
+const loginButton =
+    document.getElementById(
+        "loginButton"
+    );
+
+
+/* =========================================
+   AUTH
+========================================= */
+
+function getAdminToken() {
+
+    return sessionStorage.getItem(
+        "rl_admin_token"
+    );
+
+}
+
+
+function showLogin() {
+
+    loginScreen.style.display =
+        "flex";
+
+    dashboardScreen.style.display =
+        "none";
+
+}
+
+
+function showDashboard() {
+
+    loginScreen.style.display =
+        "none";
+
+    dashboardScreen.style.display =
+        "block";
+
+}
+
+
+function logoutAdmin() {
+
+    sessionStorage.removeItem(
+        "rl_admin_token"
+    );
+
+    showLogin();
+
+}
+
+
+/* =========================================
+   JWT
+========================================= */
+
+function isTokenValid(token) {
+
+    if (!token) {
+        return false;
+    }
+
+    try {
+
+        const parts =
+            token.split(".");
+
+        if (parts.length !== 3) {
+            return false;
+        }
+
+        const payload =
+            JSON.parse(
+                atob(
+                    parts[1]
+                )
+            );
+
+        if (
+            !payload.exp
+        ) {
+            return false;
+        }
+
+        return (
+            payload.exp * 1000 >
+            Date.now()
+        );
+
+    } catch (error) {
+
+        return false;
+
+    }
+
+}
+
+
+function startTokenTimer() {
+
+    const token =
+        getAdminToken();
+
+    if (!token) {
+        return;
+    }
+
+    try {
+
+        const payload =
+            JSON.parse(
+                atob(
+                    token.split(".")[1]
+                )
+            );
+
+        const remaining =
+            payload.exp * 1000 -
+            Date.now();
+
+        if (remaining <= 0) {
+
+            logoutAdmin();
+
+            return;
+
+        }
+
+        setTimeout(
+            logoutAdmin,
+            remaining
+        );
+
+    } catch (error) {
+
+        logoutAdmin();
+
+    }
+
+}
+
+
+/* =========================================
+   LOGIN
+========================================= */
+
+loginForm.addEventListener(
+    "submit",
+    async function(event) {
+
+        event.preventDefault();
+
+        loginError.style.display =
+            "none";
+
+        loginButton.disabled =
+            true;
+
+        loginButton.textContent =
+            "Logging in...";
+
+
+        const username =
+            document
+                .getElementById(
+                    "username"
+                )
+                .value
+                .trim();
+
+
+        const password =
+            document
+                .getElementById(
+                    "password"
+                )
+                .value;
+
+
+        try {
+
+            const response =
+                await fetch(
+                    `${API_BASE_URL}/api/admin/login`,
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            username,
+                            password
+                        })
+                    }
+                );
+
+
+            const result =
+                await response.json();
+
+
+            if (
+                !response.ok ||
+                !result.success ||
+                !result.token
+            ) {
+
+                throw new Error(
+                    result.message ||
+                    "Invalid username or password."
+                );
+
+            }
+
+
+            sessionStorage.setItem(
+                "rl_admin_token",
+                result.token
+            );
+
+
+            showDashboard();
+
+            startTokenTimer();
+
+            loadOrders();
+
+
+        } catch (error) {
+
+            console.error(
+                "Login error:",
+                error
+            );
+
+            loginError.textContent =
+                "❌ " +
+                (
+                    error.message ||
+                    "Login failed."
+                );
+
+            loginError.style.display =
+                "block";
+
+        } finally {
+
+            loginButton.disabled =
+                false;
+
+            loginButton.textContent =
+                "Login";
+
+        }
+
+    }
+);
+
+
+/* =========================================
+   SECURITY
+========================================= */
+
+function escapeHTML(value) {
+
+    if (
+        value === null ||
+        value === undefined
+    ) {
+        return "-";
+    }
+
+    return String(value)
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+function safeOrderId(value) {
+
+    return String(
+        value || ""
+    )
+    .replace(
+        /\\/g,
+        "\\\\"
+    )
+    .replace(
+        /'/g,
+        "\\'"
+    );
+
+}
+
+
+/* =========================================
+   ORDERS
+========================================= */
+
+let allOrders = [];
+
+
+async function loadOrders() {
+
+    const ordersContainer =
+        document.getElementById(
+            "orders"
+        );
+
+
+    ordersContainer.innerHTML = `
+        <div class="loading">
+            🔄 Loading orders...
+        </div>
+    `;
+
+
+    try {
+
+        const token =
+            getAdminToken();
+
+
+        if (
+            !isTokenValid(token)
+        ) {
+
+            logoutAdmin();
+
+            return;
+
+        }
+
+
+        const response =
+            await fetch(
+                `${API_BASE_URL}/api/orders`,
+                {
+                    method: "GET",
+
+                    headers: {
+                        "Authorization":
+                            `Bearer ${token}`
+                    }
+                }
+            );
+
+
+        if (
+            response.status === 401
+        ) {
+
+            logoutAdmin();
+
+            return;
+
+        }
+
+
+        const result =
+            await response.json();
+
+
+        if (
+            !response.ok ||
+            !result.success
+        ) {
+
+            throw new Error(
+                result.message ||
+                "Failed to load orders."
+            );
+
+        }
+
+
+        allOrders =
+            Array.isArray(
+                result.orders
+            )
+                ? result.orders
+                : [];
+
+
+        updateStats(
+            allOrders
+        );
+
+
+        filterOrders();
+
+
+    } catch (error) {
+
+        console.error(
+            "Load orders error:",
+            error
+        );
+
+
+        ordersContainer.innerHTML = `
+            <div class="error">
+
+                ❌ Failed to load orders.
+
+                <br><br>
+
+                ${escapeHTML(
+                    error.message ||
+                    "Plea type="button"
             onclick="loadOrders()"
             class="refresh-btn">
 
